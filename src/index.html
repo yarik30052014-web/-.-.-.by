@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мир пельменей | Галерея с фото</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #fef9f0;
+            color: #3e2e1f;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 40px;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 3px dashed #d4a373;
+        }
+
+        h1 {
+            font-size: 4rem;
+            color: #b23b2b;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .subhead {
+            font-size: 1.5rem;
+            color: #6b4f3a;
+            font-style: italic;
+            background: #fae6d8;
+            display: inline-block;
+            padding: 10px 30px;
+            border-radius: 50px;
+        }
+
+        .intro {
+            background: #fae6d8;
+            padding: 40px;
+            border-radius: 60px;
+            margin: 40px 0;
+            text-align: center;
+            font-size: 1.3rem;
+        }
+
+        .gallery-title {
+            font-size: 3rem;
+            text-align: center;
+            margin: 50px 0;
+            color: #a55d3d;
+        }
+
+        .gallery-title::after {
+            content: "";
+            display: block;
+            width: 200px;
+            height: 4px;
+            background: #d4a373;
+            margin: 15px auto;
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin: 40px 0;
+        }
+
+        .card {
+            flex: 1 1 300px;
+            max-width: 350px;
+            background: #fff9f2;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(150,100,60,0.15);
+            border: 1px solid #edd5b5;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(180,100,60,0.25);
+        }
+
+        /* ВОТ ЗДЕСЬ ТЕПЕРЬ СТИЛИ ДЛЯ ИЗОБРАЖЕНИЙ */
+        .card-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            border-bottom: 3px solid #d4a373;
+        }
+
+        .card-content {
+            padding: 25px 20px;
+            text-align: center;
+        }
+
+        .card h3 {
+            font-size: 2rem;
+            color: #b23b2b;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #5f4c3b;
+            font-size: 1rem;
+        }
+
+        .recipe {
+            background: #fff1e5;
+            margin: 50px 0;
+            padding: 40px;
+            border-radius: 40px;
+            border-left: 15px solid #b23b2b;
+        }
+
+        .recipe h2 {
+            font-size: 2.5rem;
+            color: #8b3c2a;
+            margin-bottom: 30px;
+        }
+
+        .recipe ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .recipe li {img src="https://images.unsplash.com/photo-1551024704-9d3b10f2a3b0?w=350&h=220&fit=crop" alt="Русские пельмени" class="card-img">
+            background: white;
+            padding: 15px 20px;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+        }
+        .recipe li::before {
+            content: "🥟";
+            font-size: 1.3rem;
+        }
+
+        .steps {
+            background: #e6d5c0;
+            padding: 30px;
+            border-radius: 30px;
+ <img src="https://images.unsplash.com/photo-1541696432-4871f8b4b8c5?w=350&h=220&fit=crop" alt="Китайские цзяоцзы" class="card-img">
+
+        .steps p {
+            margin: 15px 0;
+            padding: 10px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 30px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px 0 10px;
+            border-top: 2px solid #d4a373;
+            color: #6f4e37;
+        }
+
+        .facts {
+            background: #f0e0d0;
+            padding: 30px;
+            border-radius: 30px;
+            margin: 40px 0;
+            columns: 2;
+        }
+
+        .facts h3 {
+            column-span: all;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #8b3c2a;
+            font-size: 2rem;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2.5rem; }
+            .container { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>
+                <span>🥟</span> 
+                Мир пельменей 
+                <span>🥟</span>
+            </h1>
+            <div class="subhead">С любовью к тесту и начинке</div>
+        </header>
+
+        <section class="intro">
+            <p>Пельмени — это целая философия. На сайте собраны лучшие рецепты и виды со всего мира. Приятного аппетита!</p>
+        </section>
+
+        <div class="facts">
+            <h3>Интересные факты</h3>
+            <p>📌 Пельмени пришли из Сибири</p>
+            <p>📌 «Пельмень» = «хлебное ухо»</p>
+            <p>📌 Китай лепит их 2000 лет</p>
+            <p>📌 Самый большой пельмень — 180 кг</p>
+            <p>📌 Равиоли бывают сладкими</p>
+        </div>
+
+        <h2 class="gallery-title">Виды пельменей</h2>
+        
+        <div class="card-container">
+            <!-- КАРТОЧКА 1 - с img src -->data:image/jpeg;base64,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
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1551024704-9d3b10f2a3b0?w=350&h=220&fit=crop" alt="Русские пельмени" class="card-img">
+                <div class="card-content">
+                    <h3>Русские</h3>
+                    <p>Говядина и свинина, лук, перец. Со сметаной или уксусом.</p>
+                </div>
+            </div>
+
+            <!-- КАРТОЧКА 2 - с img src -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1627301840369-8b4b2c9b1d5a?w=350&h=220&fit=crop" alt="Сибирские пельмени" class="card-img">
+                <div class="card-content">
+                    <h3>Сибирские</h3>
+                    <p>Рубленое мясо, лед и мороз. Вкус настоящей тайги.</p>
+                </div>
+            </div>
+
+            <!-- КАРТОЧКА 3 - с img src -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1541696432-4871f8b4b8c5?w=350&h=220&fit=crop" alt="Китайские цзяоцзы" class="card-img">
+                <div class="card-content">
+                    <h3>Цзяоцзы</h3>
+                    <p>Свинина, имбирь, пекинская капуста. Подают с соевым соусом.</p>
+                </div>
+            </div>
+
+            <!-- КАРТОЧКА 4 - с img src -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1572441716727-b9e8c6e7d3a0?w=350&h=220&fit=crop" alt="Итальянские равиоли" class="card-img">
+                <div class="card-content">
+                    <h3>Равиоли</h3>
+                    <p>Рикотта, шпинат, мясо. Подают с соусом песто.</p>
+                </div>
+            </div>
+
+            <!-- КАРТОЧКА 5 - с img src -->https://www.google.com/imgres?q=%D0%BF%D0%B5%D0%BB%D1%8C%D0%BC%D0%B5%D0%BD%D0%B8&imgurl=https%3A%2F%2Fist.say7.info%2Fimg0009%2F35%2F935_0140x6b_9748_1024.jpg&imgrefurl=https%3A%2F%2Fwww.say7.info%2Fcook%2Frecipe%2F935-Pelmeni.html&docid=1jI2SWuj671hZM&tbnid=bKog4NJ7-ItnuM&vet=12ahUKEwiQu_C2gO2SAxV9HhAIHfgzEyMQnPAOegQIExAB..i&w=1024&h=768&hcb=2&ved=2ahUKEwiQu_C2gO2SAxV9HhAIHfgzEyMQnPAOegQIExAB
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1627301840369-7d9b6a9d8b8a?w=350&h=220&fit=crop" alt="Узбекские манты" class="card-img">
+                <div class="card-content">
+                    <h3>Манты</h3>
+                    <p>Баранина, лук, тыква. Готовятся на пару.</p>
+                </div>
+            </div>
+
+            <!-- КАРТОЧКА 6 - с img src -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1582456789653-9b9b8c7d1b5a?w=350&h=220&fit=crop" alt="Японские гёдза" class="card-img">
+                <div class="card-content">
+                    <h3>Гёдза</h3>
+                    <p>Свинина, чеснок, капуста. Жареные, с уксусом.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="recipe">
+            <h2>✨ Идеальное тесто ✨</h2>
+            <ul>
+                <li>Мука - 500 г</li>
+                <li>Яйца - 2 шт</li>
+                <li>Вода - 200 мл</li>
+                <li>Соль - 1 ч.л.</li>
+                <li>Масло - 2 ст.л.</li>
+            </ul>
+            <div class="steps">
+                <p><strong>1.</strong> Смешать муку с солью</p>
+                <p><strong>2.</strong> Добавить яйца и масло</p>
+                <p><strong>3.</strong> Влить воду, замесить</p>
+                <p><strong>4.</strong> Отдохнуть 30 минут</p>
+                <p><strong>5.</strong> Раскатать и лепить</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>🍽️ Приятного аппетита! 🍽️</p>
+            <p>г. Пельменьград, 2025</p>
+        </footer>
+    </div>
+</body>
+</html>                                        <!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мир пельменей | С кнопками</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #fef9f0;
+            color: #3e2e1f;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 40px;
+            position: relative;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 3px dashed #d4a373;
+        }
+
+        h1 {
+            font-size: 4rem;
+            color: #b23b2b;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .subhead {
+            font-size: 1.5rem;
+            color: #6b4f3a;
+            font-style: italic;
+            background: #fae6d8;
+            display: inline-block;
+            padding: 10px 30px;
+            border-radius: 50px;
+        }
+
+        .intro {
+            background: #fae6d8;
+            padding: 40px;
+            border-radius: 60px;
+            margin: 40px 0;
+            text-align: center;
+            font-size: 1.3rem;
+        }
+
+        .gallery-title {
+            font-size: 3rem;
+            text-align: center;
+            margin: 50px 0;
+            color: #a55d3d;
+        }
+
+        .gallery-title::after {
+            content: "";
+            display: block;
+            width: 200px;
+            height: 4px;
+            background: #d4a373;
+            margin: 15px auto;
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin: 40px 0;
+        }
+
+        .card {
+            flex: 1 1 300px;
+            max-width: 350px;
+            background: #fff9f2;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(150,100,60,0.15);
+            border: 1px solid #edd5b5;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(180,100,60,0.25);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            border-bottom: 3px solid #d4a373;
+        }
+
+        .card-content {
+            padding: 25px 20px;
+            text-align: center;
+        }
+
+        .card h3 {
+            font-size: 2rem;
+            color: #b23b2b;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #5f4c3b;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        /* СТИЛИ ДЛЯ КНОПОК */
+        .btn {
+            display: inline-block;
+            background: #b23b2b;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 1rem;
+            border: 2px solid #b23b2b;
+        }
+
+        .btn:hover {
+            background: white;
+            color: #b23b2b;
+        }
+
+        .btn-small {
+            padding: 8px 25px;
+            font-size: 0.9rem;
+        }
+
+        .btn-center {
+            display: block;
+            width: fit-content;
+            margin: 40px auto;
+        }
+
+        .btn-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #b23b2b;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: 0.3s;
+            z-index: 100;
+        }
+
+        .btn-top:hover {
+            background: #8b2e1f;
+            transform: scale(1.1);
+        }
+
+        .recipe {
+            background: #fff1e5;
+            margin: 50px 0;
+            padding: 40px;
+            border-radius: 40px;
+            border-left: 15px solid #b23b2b;
+        }
+
+        .recipe h2 {
+            font-size: 2.5rem;
+            color: #8b3c2a;
+            margin-bottom: 30px;
+        }
+
+        .recipe ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .recipe li {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+        }
+
+        .recipe li::before {
+            content: "🥟";
+            font-size: 1.3rem;
+        }
+
+        .steps {
+            background: #e6d5c0;
+            padding: 30px;
+            border-radius: 30px;
+        }
+
+        .steps p {
+            margin: 15px 0;
+            padding: 10px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 30px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px 0 10px;
+            border-top: 2px solid #d4a373;
+            color: #6f4e37;
+        }
+
+        .facts {
+            background: #f0e0d0;
+            padding: 30px;
+            border-radius: 30px;
+            margin: 40px 0;
+            columns: 2;
+        }
+
+        .facts h3 {
+            column-span: all;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #8b3c2a;
+            font-size: 2rem;
+        }
+
+        /* Скрытый контент для демонстрации работы кнопок */
+        .hidden-content {
+            display: none;
+            background: #fff1e5;
+            padding: 30px;
+            border-radius: 30px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .hidden-content.show {
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2.5rem; }
+            .container { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>
+                <span>🥟</span> 
+                Мир пельменей 
+                <span>🥟</span>
+            </h1>
+            <div class="subhead">С любовью к тесту и начинке</div>
+        </header>
+
+        <section class="intro">
+            <p>Пельмени — это целая философия. На сайте собраны лучшие рецепты и виды со всего мира. Нажимайте на кнопки, чтобы узнать больше!</p>
+        </section>
+
+        <div class="facts">
+            <h3>Интересные факты</h3>
+            <p>📌 Пельмени пришли из Сибири</p>
+            <p>📌 «Пельмень» = «хлебное ухо»</p>
+            <p>📌 Китай лепит их 2000 лет</p>
+            <p>📌 Самый большой пельмень — 180 кг</p>
+            <p>📌 Равиоли бывают сладкими</p>
+        </div>
+
+        <h2 class="gallery-title">Виды пельменей</h2>
+        
+        <div class="card-container">
+            <!-- Карточка 1 -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1551024704-9d3b10f2a3b0?w=350&h=220&fit=crop" alt="Русские пельмени" class="card-img">
+                <div class="card-content">
+                    <h3>Русские</h3>
+                    <p>Говядина и свинина, лук, перец. Со сметаной или уксусом.</p>
+                    <button class="btn btn-small" onclick="alert('Русские пельмени: традиционный рецепт с мясом. Подавать со сметаной!')">Подробнее</button>
+                </div>
+            </div>
+
+            <!-- Карточка 2 -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1627301840369-8b4b2c9b1d5a?w=350&h=220&fit=crop" alt="Сибирские пельмени" class="card-img">
+                <div class="card-content">
+                    <h3>Сибирские</h3>
+                    <p>Рубленое мясо, лед и мороз. Вкус настоящей тайги.</p>
+                    <button class="btn btn-small" onclick="alert('Сибирские пельмени: рубленое мясо, заморозка на морозе. Подавать с бульоном!')">Подробнее</button>
+                </div>
+            </div>
+
+            <!-- Карточка 3 -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1541696432-4871f8b4b8c5?w=350&h=220&fit=crop" alt="Китайские цзяоцзы" class="card-img">
+                <div class="card-content">
+                    <h3>Цзяоцзы</h3>
+                    <p>Свинина, имбирь, пекинская капуста. Подают с соевым соусом.</p>
+                    <button class="btn btn-small" onclick="alert('Китайские цзяоцзы: тонкое тесто, имбирь и соевый соус. Часто жарят!')">Подробнее</button>
+                </div>
+            </div>
+
+            <!-- Карточка 4 -->
+            <div class="card">
+                 <img src="data:image/jpeg;base64,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">
+                <div class="card-content">
+                    <h3>Равиоли</h3>
+                    <p>Рикотта, шпинат, мясо. Подают с соусом песто.</p>
+                    <button 2qliUDrP0SgZooL0KKvdijskBUFJehTVrs0dmgK4pr0GKcMX3AgIAxegxThiMKAjDV6DV7DV6DUB4Y1adnbkqlGnmr7ApIPclass="btn btn-small" onclick="alert('Итальянские равиоли: квадратные, с рикоттой и шпинатом. Подают с соусом!')">Подробнее</button>
+                </div>
+            </div>
+
+            <!-- Карточка 5 -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1627301840369-7d9b6a9d8b8a?w=350&h=220&fit=crop" alt="Узбекские манты" class="card-img">
+                <div class="card-content">
+                    <h3>Манты</h3>
+                    <p>Баранина, лук, тыква. Готовятся на пару.</p>
+                    <button class="btn btn-small" onclick="alert('Узбекские манты: крупные, с бараниной и тыквой. Готовятся в мантышнице!')">Подробнее</button>
+                </div>
+            </div>
+
+            <!-- Карточка 6 -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1582456789653-9b9b8c7d1b5a?w=350&h=220&fit=crop" alt="Японские гёдза" class="card-img">
+                <div class="card-content">
+                    <h3>Гёдза</h3>
+                    <p>Свинина, чеснок, капуста. Жареные, с уксусом.</p>
+                    <button class="btn btn-small" onclick="alert('Японские гёдза: жареные пельмени с чесноком. Подают с рисовым уксусом!')">Подробнее</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Кнопка "Показать все рецепты" -->
+        <button class="btn btn-center" onclick="toggleRecipes()">📖 Показать все рецепты</button>
+
+        <!-- Скрытый контент, который появляется по кнопке -->
+        <div id="allRecipes" class="hidden-content">
+            <h2 style="color: #b23b2b; margin-bottom: 20px;">🍲 Все рецепты пельменей</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 20px;">
+                <div style="background: white; padding: 20px; border-radius: 20px;">
+                    <h3>Русские</h3>
+                    <p>Фарш: 500г говядины, 500г свинины, 2 луковицы, соль, перец.</p>
+                </div>
+                <div style="background: white; padding: 20px; border-radius: 20px;">
+                    <h3>Сибирские</h3>
+                    <p>Рубленая говядина, лук, чеснок, ледяная вода.</p>
+                </div>
+                <div style="background: white; padding: 20px; border-radius: 20px;">
+                    <h3>Цзяоцзы</h3>
+                    <p>Свинина, пекинская капуста, имбирь, соевый соус.</p>
+                </div>
+                <div style="background: white; padding: 20px; border-radius: 20px;">
+                    <h3>Равиоли</h3>
+                    <p>Рикотта, шпинат, пармезан, мускатный орех.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="recipe">
+            <h2>✨ Идеальное тесто ✨</h2>
+            <ul>
+                <li>Мука - 500 г</li>
+                <li>Яйца - 2 шт</li>
+                <li>Вода - 200 мл</li>
+                <li>Соль - 1 ч.л.</li>
+                <li>Масло - 2 ст.л.</li>
+            </ul>
+            <div class="steps">
+                <p><strong>1.</strong> Смешать муку с солью</p>
+                <p><strong>2.</strong> Добавить яйца и масло</p>
+                <p><strong>3.</strong> Влить воду, замесить</p>
+                <p><strong>4.</strong> Отдохнуть 30 минут</p>
+                <p><strong>5.</strong> Раскатать и лепить</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>🍽️ Приятного аппетита! 🍽️</p>
+            <p>г. Пельменьград, 2025</p>
+        </footer>
+    </div>
+
+    <!-- Кнопка "Наверх" -->
+    <button class="btn-top" onclick="scrollToTop()">↑</button>
+
+    <script>
+        // Функция для показа/скрытия всех рецептов
+        function toggleRecipes() {
+            const recipesDiv = document.getElementById('allRecipes');
+            recipesDiv.classList.toggle('show');
+            
+            // Меняем текст кнопки
+            const btn = event.target;
+            if (recipesDiv.classList.contains('show')) {
+                btn.textContent = '📖 Скрыть рецепты';
+            } else {
+                btn.textContent = '📖 Показать все рецепты';
+            }
+        }
+
+        // Функция для плавного скролла наверх
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Показываем/скрываем кнопку "Наверх" при скролле
+        window.onscroll = function() {
+            const btnTop = document.querySelector('.btn-top');
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                btnTop.style.display = 'flex';
+            } else {
+                btnTop.style.display = 'none';
+            }
+        };
+    </script>
+</body>
+</html>
